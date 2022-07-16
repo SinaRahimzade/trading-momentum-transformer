@@ -71,55 +71,11 @@ def main(
 
 if __name__ == "__main__":
 
-    def get_args():
-        """Returns settings from command line."""
-
-        parser = argparse.ArgumentParser(description="Run changepoint detection module")
-        # parser.add_argument(
-        #     "cpd_module_folder",
-        #     metavar="c",
-        #     type=str,
-        #     nargs="?",
-        #     default=CPD_QUANDL_OUTPUT_FOLDER_DEFAULT,
-        #     # choices=[],
-        #     help="Input folder for CPD outputs.",
-        # )
-        parser.add_argument(
-            "lookback_window_length",
-            metavar="l",
-            type=int,
-            nargs="?",
-            default=None,
-            # choices=[],
-            help="Input folder for CPD outputs.",
-        )
-        # parser.add_argument(
-        #     "output_file_path",
-        #     metavar="f",
-        #     type=str,
-        #     nargs="?",
-        #     default=FEATURES_QUANDL_FILE_PATH_DEFAULT,
-        #     # choices=[],
-        #     help="Output file location for csv.",
-        # )
-        parser.add_argument(
-            "extra_lbw",
-            metavar="-e",
-            type=int,
-            nargs="*",
-            default=[],
-            # choices=[],
-            help="Fill missing prices.",
-        )
-
-        args = parser.parse_known_args()[0]
-
-        return (
-            QUANDL_TICKERS,
-            CPD_QUANDL_OUTPUT_FOLDER(args.lookback_window_length),
-            args.lookback_window_length,
-            FEATURES_QUANDL_FILE_PATH(args.lookback_window_length),
-            args.extra_lbw,
-        )
-
-    main(*get_args())
+    tickers = ['فولاد','شپنا']
+    main(
+        tickers,
+        CPD_QUANDL_OUTPUT_FOLDER(lookback_window_length=100),
+        lookback_window_length=100,
+        output_file_path=FEATURES_QUANDL_FILE_PATH(lookback_window_length=100),
+        extra_lbw=None
+    )
